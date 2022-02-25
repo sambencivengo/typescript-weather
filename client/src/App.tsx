@@ -8,12 +8,13 @@ function App() {
 
 	const lat: Coord = 40.651282;
 	const lng: Coord = -73.972687;
-
-	const staticURL: string = `api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${weatherKey}`;
+	const city: string = 'Los angeles';
+	const latLngURL: string = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${weatherKey}`;
+	const cityURL: string = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${weatherKey}`;
 
 	const fetchWeatherData = async (url: string) => {
 		try {
-			const res = await fetch(url);
+			const res = await fetch(cityURL);
 			const data = await res.json();
 			console.log(data);
 		} catch (error) {
@@ -21,7 +22,7 @@ function App() {
 		}
 	};
 
-	fetchWeatherData(staticURL);
+	fetchWeatherData(latLngURL);
 
 	return (
 		<div className="App">
