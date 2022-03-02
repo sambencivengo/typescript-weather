@@ -16,7 +16,7 @@ function CityErrorAlert() {
 					That city is invalid or the API had trouble finding your
 					data, please try again.
 				</AlertDescription>
-				<CloseButton position="absolute" right="8px" top="8px" />
+				{/* <CloseButton position="absolute" right="8px" top="8px" /> */}
 			</Alert>
 		</div>
 	);

@@ -1,3 +1,4 @@
+import { Box, Center, Flex, Grid } from '@chakra-ui/react';
 import { useState } from 'react';
 import './App.css';
 import CityErrorAlert from './components/CityErrorAlert';
@@ -28,12 +29,18 @@ function App() {
 			return;
 		}
 		console.log(data);
+		setIsCityError(false);
 	};
 
 	return (
 		<div className="App">
-			<CityForm onSubmit={handleFetch} />
-			{isCityError && <CityErrorAlert />}
+			<Flex>
+				<Box position="fixed" left="0" w="350px" h="100%" bg="grey">
+					<CityForm onSubmit={handleFetch} />
+					{isCityError && <CityErrorAlert />}
+				</Box>
+				<Box flex="1" marginLeft="350px" h="100vh" bg="green"></Box>
+			</Flex>
 		</div>
 	);
 }

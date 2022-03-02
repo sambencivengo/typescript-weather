@@ -18,8 +18,8 @@ interface CityFormProps {
 function CityForm({ onSubmit }: CityFormProps) {
 	const [city, setCity] = useState<string>('');
 	const [isError, setIsError] = useState<boolean>(false);
-	const cityURL: string = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${process.env.REACT_APP_WEATHER_KEY}`;
-	console.log(cityURL);
+	const cityURL: string = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${process.env.REACT_APP_WEATHER_KEY}`;
+
 	return (
 		<div>
 			<form
