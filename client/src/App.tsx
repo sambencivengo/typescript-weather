@@ -1,39 +1,39 @@
 import { useState } from 'react';
 import './App.css';
+import CityErrorAlert from './components/CityErrorAlert';
 import CityForm from './components/CityForm';
 
 // const weatherURL = `api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API key}`
 
 function App() {
-	const [formInput, setFormInput] = useState<string | null>(null);
-	const weatherKey = process.env.REACT_APP_WEATHER_KEY;
-
-	const handleInput = (val: string): void => {
-		setFormInput(val);
-	};
+	const [isCityError, setIsCityError] = useState<boolean>(false);
 	type Coord = number;
-
 	const lat: Coord = 40.651282;
 	const lng: Coord = -73.972687;
-	const city: string = 'Los angeles';
-	const latLngURL: string = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${weatherKey}`;
-	const cityURL: string = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${weatherKey}`;
 
 	const fetchWeatherData = async (url: string) => {
 		try {
-			const res = await fetch(cityURL);
+			const res = await fetch(url);
 			const data = await res.json();
-			console.log(data);
+			return data;
 		} catch (error) {
 			console.log(error);
 		}
 	};
 
-	fetchWeatherData(latLngURL);
+	const handleFetch = async (url: string) => {
+		const data = await fetchWeatherData(url);
+		if (data.message === 'city not found') {
+			setIsCityError(true);
+			return;
+		}
+		console.log(data);
+	};
 
 	return (
 		<div className="App">
-			<CityForm onChange={handleInput} />
+			<CityForm onSubmit={handleFetch} />
+			{isCityError && <CityErrorAlert />}
 		</div>
 	);
 }
