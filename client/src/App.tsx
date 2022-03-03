@@ -1,6 +1,7 @@
 import { Box, Center, Flex, Grid } from '@chakra-ui/react';
 import { useState } from 'react';
 import './App.css';
+import CityCardContainer from './components/CityCardContainer';
 import CityErrorAlert from './components/CityErrorAlert';
 import CityForm from './components/CityForm';
 
@@ -38,6 +39,7 @@ function App() {
 				<Box position="fixed" left="0" w="350px" h="100%" bg="grey">
 					<CityForm onSubmit={handleFetch} />
 					{isCityError && <CityErrorAlert />}
+					<CityCardContainer />
 				</Box>
 				<Box
 					flex="1"
@@ -46,21 +48,7 @@ function App() {
 					bg="blue"
 					padding="20px"
 				>
-					<Box w="100%" padding="20px" bg="white" marginBottom="20px">
-						Test Card
-					</Box>
-					<Box w="100%" padding="20px" bg="white" marginBottom="20px">
-						Test Card
-					</Box>
-					<Box w="100%" padding="20px" bg="white" marginBottom="20px">
-						Test Card
-					</Box>
-					<Box w="100%" padding="20px" bg="white" marginBottom="20px">
-						Test Card
-					</Box>
-					<Box w="100%" padding="20px" bg="white" marginBottom="20px">
-						Test Card
-					</Box>
+					DISPLAY SELECTED CITY WEATHER ON SIDEBAR CLICK
 				</Box>
 			</Flex>
 		</div>
