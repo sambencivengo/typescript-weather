@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const connectDB = require('./db/connect');
+const locationRouter = require('./routes/locationRouter');
 require('dotenv').config({ path: './.env' });
 
 const port = 5000 || process.env.PORT;
@@ -10,6 +11,7 @@ app.use(express.json());
 app.get('*', (req, res) =>
 	res.status(200).send({ message: 'This is where it all starts!!!' })
 );
+app.use('/api/v1/', locationRouter);
 
 const start = async () => {
 	try {
