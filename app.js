@@ -8,11 +8,11 @@ const port = 5000 || process.env.PORT;
 const db = process.env.MONGO_URI;
 
 app.use(express.json());
+app.use('/api/v1/', locationRouter);
+
 app.get('*', (req, res) =>
 	res.status(200).send({ message: 'This is where it all starts!!!' })
 );
-app.use('/api/v1/', locationRouter);
-
 const start = async () => {
 	try {
 		await connectDB(db);
