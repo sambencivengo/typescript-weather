@@ -39,7 +39,29 @@ function App() {
 					<CityForm onSubmit={handleFetch} />
 					{isCityError && <CityErrorAlert />}
 				</Box>
-				<Box flex="1" marginLeft="350px" h="100vh" bg="green"></Box>
+				<Box
+					flex="1"
+					marginLeft="350px"
+					h="100vh"
+					bg="blue"
+					padding="20px"
+				>
+					<Box w="100%" padding="20px" bg="white" marginBottom="20px">
+						Test Card
+					</Box>
+					<Box w="100%" padding="20px" bg="white" marginBottom="20px">
+						Test Card
+					</Box>
+					<Box w="100%" padding="20px" bg="white" marginBottom="20px">
+						Test Card
+					</Box>
+					<Box w="100%" padding="20px" bg="white" marginBottom="20px">
+						Test Card
+					</Box>
+					<Box w="100%" padding="20px" bg="white" marginBottom="20px">
+						Test Card
+					</Box>
+				</Box>
 			</Flex>
 		</div>
 	);
