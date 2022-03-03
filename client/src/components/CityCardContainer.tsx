@@ -1,34 +1,39 @@
-import { useEffect } from 'react';
+import { VStack } from '@chakra-ui/react';
+import { useEffect, useState } from 'react';
+import { convertToObject } from 'typescript';
+import CityCardItem from './CityCardItem';
 
 const url = 'http://localhost:5000/api/v1/city';
-
-interface CityData {
-  [
+interface City {
+	_id: Number;
+	city: String;
+	__v: Number;
 }
-function CityCardContainer() {
-  interface City {
-    _id: Number;
-    city: String;
-    __v: Number
-  }
-	useEffect(() => {
-		// fetch cities and render small cards for each city.
 
-		const fetchCityData = async (url: string): Promise<City[]> => {
+function CityCardContainer() {
+	const [cityData, setCityData] = useState<[] | null>(null);
+	useEffect(() => {
+		const fetchCityData = async (url: string): Promise<City[] | null> => {
 			try {
 				const res = await fetch(url);
 				const data = await res.json();
-        // do something with data
-        return data
+				setCityData(data);
 			} catch (error) {
-        console.log(error)        
+				console.log(error);
 			}
+			return null;
 		};
 
 		fetchCityData(url);
 	}, []);
 
-	return <>Testing</>;
+	return (
+		<VStack>
+			{cityData?.map((city) => {
+				return <CityCardItem />;
+			})}
+		</VStack>
+	);
 }
 
 export default CityCardContainer;
